@@ -1,5 +1,6 @@
 const initialState = {
-    images: []
+    images: [],
+    bimages: {}
 }
 
 export default (state = initialState, action) => {
@@ -10,7 +11,14 @@ export default (state = initialState, action) => {
                 ...state,
                 images: action.payload
             }
+
+        case 'bimages/load/success':
+            return {
+                ...state,
+                bimages: action.payload
+            }    
             
+        
 
         default:
             return state;
