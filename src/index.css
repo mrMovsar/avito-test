@@ -1,5 +1,5 @@
 .container {
-  width: 1000px;
+  max-width: 1000px;
   
 }
 .header {
@@ -13,14 +13,94 @@
   display: flexbox;
   text-align: center;
 }
-img{
+.images img{
   margin: 10px;
 }
 .footer{
   flex: 1;
-  margin-top: 300px;
+  margin-top: 100px;
   text-align: center;
   border-top: 1px solid rgb(207, 200, 200);
   color:  rgb(207, 200, 200);
   padding: 10px;
+}
+.modal_wrapper{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+.modal_wrapper.open{
+  height: 100%;
+  display: block;
+}
+.modal_wrapper.close{
+  height: 0;
+  display: none;
+}
+.modal_body{
+  max-width: 700px;
+  margin: auto;
+  background: white;
+  margin-top: 5%;
+  padding: 20px;
+  border-radius: 10px;
+  
+}
+.modal-body-flex{
+
+  display: flex;
+}
+
+.modal-left{
+  width: 65%;
+}
+.modal-left img {
+  width: 100%;
+  height: 300px;
+}
+.modal-left input{
+  width: 100%;
+  margin-top: 15px;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+.modal-left button {
+  width: 100%;
+  height: 25px;
+  background: #4997D0;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  margin-top: 15px;
+}
+.modal-right{
+  width: 35%;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+.modal-right span{
+  display: block;
+  padding: 15px 0 5px 0;
+  color: rgb(184, 179, 179);
+}
+.modal_close{
+  text-align: right;
+  flex: 1;
+  font-size: 30px;
+  
+}
+
+@media only screen and (max-width:700px) {
+  .modal_body, .modal-body-flex {
+    display: block;
+    max-width: 450px;
+  }
+  .modal-left{
+    width: 100%;
+  }
+  .footer{
+    margin-top: 30px;
+  }
 }

@@ -22,12 +22,19 @@ export const bigImage = (id) => {
         .then(response => response.json())
         .then((json) => {
             dispatch ({
-                type: 'bimages/load/success',
-                payload: json.url
+                type: 'bigImages/load/success',
+                payload: json
             })
         })
     }
 }
 
+export const closeModal = () => {
+    return dispatch => {
+        dispatch ({
+            type: 'close/modal/success'
+        })
+    }
+}
 
 

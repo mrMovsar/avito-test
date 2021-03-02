@@ -1,6 +1,8 @@
 const initialState = {
     images: [],
-    bimages: {}
+    bigImages: [],
+    isOpen: false,
+    comment: []
 }
 
 export default (state = initialState, action) => {
@@ -12,11 +14,19 @@ export default (state = initialState, action) => {
                 images: action.payload
             }
 
-        case 'bimages/load/success':
+        case 'bigImages/load/success':
             return {
                 ...state,
-                bimages: action.payload
+                bigImages: action.payload,
+                comment: action.payload.comments,
+                isOpen: true
             }    
+            
+        case 'close/modal/success':
+            return {
+                ...state,
+                isOpen: false
+            }        
             
         
 
