@@ -17,7 +17,7 @@ export default (state = initialState, action) => {
         case 'bigImages/load/success':
             return {
                 ...state,
-                bigImages: action.payload,
+                bigImages: action.payload.url,
                 comment: action.payload.comments,
                 isOpen: true
             }    

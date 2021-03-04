@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadImages, closeModal } from "../actions"
 import Header from "./Header";
@@ -16,25 +16,36 @@ function App() {
     dispatch(loadImages())
   }, [dispatch]);
 
+  const [text, setText] = useState("")
   
-
   const clickClose = () => {
     dispatch(closeModal())
+  }
+
+  const handleChange = (e) => {
+    setText(e.target.value)
+  }
+
+  const handleAdd = () => {
+    console.log(comment)
   }
 
   return (
     <div className="container">
       <Header/>
       <Images/>
-      <div className={`modal_wrapper ${isOpen === true ? 'open' : 'close'}`} >
-        <div className="modal_body">
-          <div className="modal_close" onClick={clickClose} > × </div>
+      <div className={`modal-wrapper ${isOpen === true ? 'open' : 'close'}`}  >
+        <div className="modal-body" >
+          <div className="modal-close" onClick={clickClose} > × </div>
           <div className="modal-body-flex">
             <div className="modal-left">
-              <img src={bigImages.url} alt="abc"/>
-              <input placeholder="Ваше имя"/>
-              <input placeholder="Ваш коммнтарий"/>
-              <button>Оставить комментарий</button>
+              <img src={bigImages} alt="abc"/>
+              <input placeholder="Ваше имя"
+              type="text"
+              value={text}
+              onChange={handleChange}/>
+              <input placeholder="Ваш коммeнтарий"/>
+              <button onClick={handleAdd}>Оставить комментарий</button>
             </div>
             <div className="modal-right">
               {comment.map(comm => {
@@ -45,12 +56,13 @@ function App() {
                   </div>
                 )
               })}
+              
             </div>
           </div>
         </div>
       </div>
       <div className="footer">
-        2020-2021 
+        2020-2021
       </div>
     </div>
   );
