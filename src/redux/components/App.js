@@ -10,13 +10,17 @@ function App() {
   
   const bigImages = useSelector(state => state.bigImages);
   const isOpen = useSelector(state => state.isOpen);
-  const comment = useSelector(state => state.comment)
+  const comment = useSelector(state => state.comment);
+  
+  
   
   useEffect(() => {
     dispatch(loadImages())
   }, [dispatch]);
 
-  const [text, setText] = useState("")
+  const [text, setText] = useState("");
+  const [commit, setCommit] = useState("");
+  const [todos, setTodos] = useState([{title: "mrMovsar", commphoto: 'good photo'}])
   
   const clickClose = () => {
     dispatch(closeModal())
@@ -26,8 +30,14 @@ function App() {
     setText(e.target.value)
   }
 
+  const handleChangeCommit = (e) => {
+    setCommit(e.target.value)
+  }
+
   const handleAdd = () => {
-    console.log(comment)
+    setTodos([...todos, {title: text, commphoto: commit}])
+    setText('')
+    setCommit('')
   }
 
   return (
@@ -44,19 +54,31 @@ function App() {
               type="text"
               value={text}
               onChange={handleChange}/>
-              <input placeholder="Ваш коммeнтарий"/>
+              <input placeholder="Ваш коммeнтарий"
+              type="commit"
+              value={commit}
+              onChange={handleChangeCommit}/>
               <button onClick={handleAdd}>Оставить комментарий</button>
             </div>
             <div className="modal-right">
               {comment.map(comm => {
                 return (
                   <div key={comm.id}>
-                    <span>{comm.date}</span>
+                    <span className="date">{comm.date}</span>
                     {comm.text}
                   </div>
                 )
               })}
-              
+              <div>
+              {todos.map(todo=> {
+                return (
+                  <div>
+                    <span className="date">{todo.title}</span>
+                    {todo.commphoto}
+                  </div>
+                )
+              })}
+              </div>
             </div>
           </div>
         </div>
