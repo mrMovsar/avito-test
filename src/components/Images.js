@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { bigImage } from "../actions";
+import { bigImage } from "../redux/actions";
 
 function Images() {
     const dispatch = useDispatch();

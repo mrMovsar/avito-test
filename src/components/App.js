@@ -1,18 +1,15 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadImages, closeModal } from "../actions"
+import { closeModal, loadImages } from "../redux/actions";
+
 import Header from "./Header";
 import Images from "./Images";
 
 function App() {
   const dispatch = useDispatch();
-
-  
   const bigImages = useSelector(state => state.bigImages);
   const isOpen = useSelector(state => state.isOpen);
   const comment = useSelector(state => state.comment);
-  
-  
   
   useEffect(() => {
     dispatch(loadImages())
@@ -26,11 +23,11 @@ function App() {
     dispatch(closeModal())
   }
 
-  const handleChange = (e) => {
+  const handleChangeName = (e) => {
     setText(e.target.value)
   }
 
-  const handleChangeCommit = (e) => {
+  const handleChangeComm = (e) => {
     setCommit(e.target.value)
   }
 
@@ -53,14 +50,15 @@ function App() {
               <input placeholder="Ваше имя"
               type="text"
               value={text}
-              onChange={handleChange}/>
+              onChange={handleChangeName}/>
               <input placeholder="Ваш коммeнтарий"
               type="commit"
               value={commit}
-              onChange={handleChangeCommit}/>
+              onChange={handleChangeComm}/>
               <button onClick={handleAdd}>Оставить комментарий</button>
             </div>
             <div className="modal-right">
+              <b className="comments">Коммeнтарии</b> 
               {comment.map(comm => {
                 return (
                   <div key={comm.id}>
