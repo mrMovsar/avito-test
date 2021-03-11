@@ -27,6 +27,7 @@ export default (state = initialState, action) => {
                 ...state,
                 isOpen: false
             }        
+        
             
         
 

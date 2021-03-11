@@ -1,25 +1,32 @@
-import { useDispatch, useSelector } from "react-redux";
+import {  useDispatch, useSelector } from "react-redux";
 import { bigImage } from "../redux/actions";
+import { Link, useParams } from "react-router-dom";
+import Image from "./Image";
+import { useEffect } from "react";
 
 function Images() {
-    const dispatch = useDispatch();
-
+    const params = useParams();
     const images = useSelector(state => state.images);
 
-    const click = (id) => {
-        dispatch(bigImage(id)) 
-      }
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(bigImage(params.id))
+      }, [dispatch]);
+    
+    
 
     return (
         <div className="images">
             {images.map((image) => {
                 return (
-                    <img src={image.url} alt="abc" 
-                    key={image.id} 
-                    onClick= {() => click(image.id)}  />
+                    <Link to={`${image.id}`}>
+                    <Image image={image}/>
+                    </Link>
                 )
             })}
         </div>
     )
 }
+
 export default Images

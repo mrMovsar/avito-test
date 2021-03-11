@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Route, useParams } from "react-router-dom";
 import { closeModal, loadImages } from "../redux/actions";
 
 import Header from "./Header";
@@ -10,7 +11,7 @@ function App() {
   const bigImages = useSelector(state => state.bigImages);
   const isOpen = useSelector(state => state.isOpen);
   const comment = useSelector(state => state.comment);
-  
+  const params = useParams().id
   useEffect(() => {
     dispatch(loadImages())
   }, [dispatch]);
@@ -40,8 +41,10 @@ function App() {
   return (
     <div className="container">
       <Header/>
-      <Images/>
-      <div className={`modal-wrapper ${isOpen === true ? 'open' : 'close'}`}  >
+      <Route path="/:id?">
+        <Images/>
+      </Route>
+      <div className={`modal-wrapper ${isOpen === true? 'open' : 'close'}`}  >
         <div className="modal-body" >
           <div className="modal-close" onClick={clickClose} > × </div>
           <div className="modal-body-flex">
